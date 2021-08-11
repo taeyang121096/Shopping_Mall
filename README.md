@@ -1,7 +1,7 @@
 # Shopping_Mall
 Make a Shop about ....
-
 ## dev -> Backend(dev) : 이태양 Frontend(dev) : 김현수, 이현구
+
 
 ----------------
 
@@ -34,10 +34,9 @@ Make a Shop about ....
 
 ### 도메인 모델 테이블 설계
 
-![image](https://user-images.githubusercontent.com/74217059/129038486-43042474-cecd-400e-804d-7a4304ed4038.png)
+![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
 
-
-
+-----------------
 
 1. Member :
    + id : Long(pk)
@@ -56,6 +55,38 @@ Make a Shop about ....
    + delivery : Delivery
    + orderDate : Date
    + status : OrderStatus
+
+3. Delivery :
+   + id : Long(pk)
+   + order : Order
+   + address : Address
+   + status : DeliveryStatus
+
+4. OrderItem :  
+   + id : Long(pk)
+   + item : Item
+   + order : Order
+   + orderPrice : int
+   + count : int
+
+5. Category :
+   + id : Long(pk)
+   + name : String
+   + items : List
+   + parent : Category
+   + child : List
+
+6. Item :
+   + id : Long(pk)
+   + name : String
+   + price : int
+   + stock : int
+   + Categories : List
+
+7. Review :
+   + id : Long(pk)
+   + contnet : 글
    
+
     
    
