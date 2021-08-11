@@ -10,7 +10,7 @@ Make a Shop about ....
 1. 회원 기능 :
     - 회원가입
     - 로그인
-    - 회원 정보 조회
+    - 회원 정보 조회(MyPage)
 
 2. 상품 기능 :
     - 상품 등록
@@ -30,7 +30,32 @@ Make a Shop about ....
         - 별점 등록
     - 리뷰 조회
         - 별점 조회
-   
 
+
+### 도메인 모델 테이블 설계
+
+![image](https://user-images.githubusercontent.com/74217059/129038486-43042474-cecd-400e-804d-7a4304ed4038.png)
+
+
+
+
+1. Member :
+   + id : Long(pk)
+   + Id : String
+   + pw : String
+   + nickname : String
+   + name : String
+   + address : Address
+   + number : String
+   + orders : List
+   
+2. Order :  
+   + id : Long(pk)
+   + member : Member
+   + orderItems : List
+   + delivery : Delivery
+   + orderDate : Date
+   + status : OrderStatus
+   
     
    
