@@ -34,13 +34,19 @@ Make a Shop about ....
 
 -----------------
 ### Commit Rules
-1. dev : 새로운 개발인 경우
-2. 
+1. dev : 새로운 개발인 경우 (path도 꼭 쓸것!!)
+2. upd : 수정한 경우 (path도 꼭 쓸것!!), add(추가), del(삭제), upd(수정)
+3. del : 삭제한 경우 (path도 꼭 쓸것!!)
+4. "Rule : 파일명 -> 설명 -> path"
 
+### ex)
+### git commit -m "dev : readme.md -> (/readme.md)"
+### git commit -m "upd : readme.md -> Commit_Rules and URI_Rules (add) 리뷰기능 (del)  테이블 Address (upd) -> (/readme.md)"
+### git commit -m "del : readme.md ->  (/readme.md)"
 
 -----------------
-### URI Rules
-
+### URI Rules 
+1. resource 위주로 짜기 
 -----------------
 
 ### 도메인 모델 테이블 설계
@@ -52,10 +58,10 @@ Make a Shop about ....
 
 1. Member :
    + id : Long(pk)
-   + Id : String
-   + pw : String
+   + userId : String
+   + userPw : String
    + nickname : String
-   + name : String
+   + userName : String
    + address : Address
    + number : String
    + orders : List
