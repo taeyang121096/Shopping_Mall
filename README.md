@@ -32,12 +32,23 @@ Make a Shop about ....
     - 리뷰 조회
         - 별점 조회
 
+-----------------
+### Commit Rules
+1. dev : 새로운 개발인 경우
+2. 
+
+
+-----------------
+### URI Rules
+
+-----------------
 
 ### 도메인 모델 테이블 설계
 
 ![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
 
 -----------------
+### 테이블
 
 1. Member :
    + id : Long(pk)
@@ -87,7 +98,14 @@ Make a Shop about ....
 7. Review :
    + id : Long(pk)
    + contnet : 글
+
+8. Address
+   + city : String
+   + street : String
+   + zipcode : String
    
+-----------------
+### 테이블 다이어그램   
 
     
    
