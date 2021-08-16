@@ -37,12 +37,13 @@ Make a Shop about ....
 1. dev : 새로운 개발인 경우 (path도 꼭 쓸것!!)
 2. upd : 수정한 경우 (path도 꼭 쓸것!!), add(추가), del(삭제), upd(수정)
 3. del : 삭제한 경우 (path도 꼭 쓸것!!)
-4. "Rule : 파일명 -> 설명 -> path"
+4. "Rule : 파일명 -> 설명(간략하게) 알아서 잘 쓰세용"
 
 ### ex)
-### git commit -m "dev : readme.md -> (/readme.md)"
-### git commit -m "upd : readme.md -> Commit_Rules and URI_Rules (add) 리뷰기능 (del)  테이블 Address (upd) -> (/readme.md)"
-### git commit -m "del : readme.md ->  (/readme.md)"
+### git commit -m "dev : login.java -> login "
+### git commit -m "upd : readme.md -> Commit_Rules and URI_Rules (add) 리뷰기능 (del)  테이블 Address (upd)"
+### git commit -m "del : readme.md "
+
 
 -----------------
 ### URI Rules 
