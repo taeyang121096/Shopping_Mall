@@ -8,13 +8,14 @@ Make a Shop about ....
 ### 기능 목록
 
 1. 회원 기능 :
-    - 회원가입
+    - 회원가입 -> O
     - 로그인
-    - 회원 정보 조회(MyPage)
+    - 회원 정보 조회(MyPage) -> O
+    로그인 생성 및 인증 관련 개발 필요
 
 2. 상품 기능 :
     - 상품 등록
-    - 상품 수정
+    - 상품 수정 
     - 상품 조회
 
 
@@ -31,19 +32,37 @@ Make a Shop about ....
     - 리뷰 조회
         - 별점 조회
 
+-----------------
+### Commit Rules
+1. dev : 새로운 개발인 경우 (path도 꼭 쓸것!!)
+2. upd : 수정한 경우 (path도 꼭 쓸것!!), add(추가), del(삭제), upd(수정)
+3. del : 삭제한 경우 (path도 꼭 쓸것!!)
+4. "Rule : 파일명 -> 설명(간략하게) 알아서 잘 쓰세용"
+
+### ex)
+### git commit -m "dev : login.java -> login "
+### git commit -m "upd : readme.md -> Commit_Rules and URI_Rules (add) 리뷰기능 (del)  테이블 Address (upd)"
+### git commit -m "del : readme.md "
+
+
+-----------------
+### URI Rules 
+1. resource 위주로 짜기 
+-----------------
 
 ### 도메인 모델 테이블 설계
 
 ![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
 
 -----------------
+### 테이블
 
 1. Member :
    + id : Long(pk)
-   + Id : String
-   + pw : String
+   + userId : String
+   + userPw : String
    + nickname : String
-   + name : String
+   + userName : String
    + address : Address
    + number : String
    + orders : List
@@ -86,7 +105,14 @@ Make a Shop about ....
 7. Review :
    + id : Long(pk)
    + contnet : 글
+
+8. Address
+   + city : String
+   + street : String
+   + zipcode : String
    
+-----------------
+### 테이블 다이어그램   
 
     
    
