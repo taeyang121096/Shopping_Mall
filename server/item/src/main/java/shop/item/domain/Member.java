@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -24,7 +25,8 @@ public class Member {
 
     private String number;
 
-//    private List<Order> orders;
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders;
 
 
 }
