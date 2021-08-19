@@ -16,6 +16,9 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    private LocalDateTime orderDate;
+    private OrderStatus status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -31,7 +34,57 @@ public class Order {
     @JoinColumn(name = "review_id")
     private Review review;
 
+    //==연관관계==//
+    public void setMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
 
-    private LocalDateTime orderDate;
-    private OrderStatus status;
-}
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+    }
+
+    public void setReview(Review review){
+        this.review = review;
+    }
+
+    //==생성 메서드==//
+
+    public static Order createOrder(Member member, Delivery delivery, Review review,OrderItem... orderItems){
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        order.setReview(review);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setOrderDate(LocalDateTime.now());
+        order.setStatus(OrderStatus.ORDER);
+        return order;
+    }
+
+    //==비지니스 로직==//
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("이미 배송완료된 상품은 취소 불가능 합니다.");
+        }
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
+    //==조회==//
+    public int getTotalPrice(){
+            int totalPrice = orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
+            return totalPrice;
+        }
+    }
+
+
+
+

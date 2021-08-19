@@ -19,11 +19,10 @@ public class Member {
     private String userPw;
     private String nickName;
     private String userName;
+    private String number;
 
     @Embedded
     private Address address;
-
-    private String number;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders;
