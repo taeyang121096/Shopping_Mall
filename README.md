@@ -50,7 +50,7 @@ Make a Shop about ....
 1. resource 위주로 짜기 
 -----------------
 
-### 도메인 모델 테이블 설계
+### 도메인 모델 설계
 
 ![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
 
@@ -74,6 +74,8 @@ Make a Shop about ....
    + delivery : Delivery
    + orderDate : Date
    + status : OrderStatus
+   + review : Review
+   
 
 3. Delivery :
    + id : Long(pk)
