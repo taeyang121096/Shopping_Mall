@@ -106,7 +106,7 @@ Make a Shop about ....
 
 7. Review :
    + id : Long(pk)
-   + contnet : 글
+   + content : String
 
 8. Address
    + city : String
@@ -116,5 +116,10 @@ Make a Shop about ....
 -----------------
 ### 테이블 다이어그램   
 
+
+![KakaoTalk_Photo_2021-08-21-01-19-06](https://user-images.githubusercontent.com/56467808/130263530-baee26ea-c13b-4504-9a69-f050cdc7cf1e.png)
+
+
+ 
     
    
