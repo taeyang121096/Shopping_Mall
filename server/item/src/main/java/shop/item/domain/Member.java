@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@Getter @Setter
+@Getter
 public class Member {
 
     @Id @GeneratedValue
@@ -27,5 +27,17 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders;
 
+    //== 멤버 생성 메서드==//
+    public static Member createMember(String userId,String userPw,String nickName, String userName,String number,Address address){
+        Member member = new Member();
+        member.userId = userId;
+        member.userPw = userPw;
+        member.nickName = nickName;
+        member.userName = userName;
+        member.number = number;
+        member.address = address;
+
+        return member;
+    }
 
 }

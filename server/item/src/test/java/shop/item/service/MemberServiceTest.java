@@ -25,7 +25,7 @@ class MemberServiceTest {
     void 회원가입() throws Exception {
         //given
         Member member = new Member();
-        member.setUserName("aa");
+//        member.setUserName("aa");
 
         //when
         Long join = memberService.join(member);
@@ -37,10 +37,10 @@ class MemberServiceTest {
     void 중복_아이디() throws Exception {
         //given
         Member member1 = new Member();
-        member1.setUserId("aa");
+//        member1.setUserId("aa");
 
         Member member2 = new Member();
-        member2.setUserId("aa");
+//        member2.setUserId("aa");
         //when
 
         //then

@@ -37,12 +37,12 @@ public class MemberController {
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
 
         Member member = new Member();
-        member.setUserId(form.getUserId());
-        member.setUserPw(form.getUserPw());
-        member.setNickName(form.getNickName());
-        member.setNumber(form.getNumber());
-        member.setUserName(form.getUserName());
-        member.setAddress(address);
+//        member.setUserId(form.getUserId());
+//        member.setUserPw(form.getUserPw());
+//        member.setNickName(form.getNickName());
+//        member.setNumber(form.getNumber());
+//        member.setUserName(form.getUserName());
+//        member.setAddress(address);
 
         memberService.join(member);
         return "redirect:/";
