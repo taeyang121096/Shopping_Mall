@@ -3,6 +3,7 @@ package shop.item.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shop.item.domain.Address;
 import shop.item.domain.Member;
 import shop.item.repository.MemberRepository;
 
@@ -37,6 +38,15 @@ public class MemberService {
 
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
+    }
+
+    public List<Member> findByUserId(String userId){ return memberRepository.findByUserId(userId);}
+
+//    회원 정보 수정
+    @Transactional
+    public void update(Long id, String userPw, String nickName, Address address){
+        Member member = memberRepository.findOne(id);
+        member.update(userPw,nickName,address);
     }
 
 }
