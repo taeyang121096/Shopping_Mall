@@ -40,4 +40,11 @@ public class Member {
         return member;
     }
 
+    //==비지니스 로직==//
+    public void update(String userPw, String nickName, Address address){
+        this.userPw = userPw;
+        this.nickName = nickName;
+        this.address = address;
+    }
+
 }
