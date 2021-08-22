@@ -17,7 +17,7 @@ import java.util.List;
 public class MemberApiController {
     private final MemberService memberService;
 //  회원가입
-    @PostMapping("/api/members/join")
+    @PostMapping("/api/members")
     public CreateMemberResponse saveMember(@RequestBody @Valid CreateMemberRequest request){
         Address address = new Address(request.getCity(), request.getStreet(), request.getZipcode());
         Member member = Member.createMember(request.getUserId(),request.getUserPw(), request.getNickName(), request.getUserName(), request.getNumber(),address );
@@ -26,7 +26,7 @@ public class MemberApiController {
         return new CreateMemberResponse(id);
     }
 //  아이디 중복 체크
-    @GetMapping("/api/members/check/{userId}")
+    @GetMapping("/api/members/{userId}/duplicate")
     public boolean checkDuplicateUserId(@PathVariable("userId") String userId){
         List<Member> members = memberService.findByUserId(userId);
 //        중복이 아니면 true
@@ -44,7 +44,7 @@ public class MemberApiController {
     }
 
 //  마이페이지
-    @GetMapping("/api/members/myPage/{id}")
+    @GetMapping("/api/members/{id}")
     public MemberInfo memberInfo(@PathVariable("id") Long id){
         Member member = memberService.findOne(id);
         Address address = member.getAddress();
@@ -52,7 +52,7 @@ public class MemberApiController {
                 member.getUserName(), member.getNumber(), address.getCity(), address.getStreet(), address.getZipcode());
     }
 //  마이페이지 수정
-    @PutMapping("/api/members/change/{id}")
+    @PutMapping("/api/members/{id}")
     public void update(@PathVariable("id") Long id ,@RequestBody @Valid UpdateMember request){
         Address address = new Address(request.getCity(), request.getStreet(), request.getZipcode());
         memberService.update(id, request.getUserPw(), request.getNickName(), address);

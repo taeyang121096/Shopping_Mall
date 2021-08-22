@@ -1,18 +1,18 @@
 api spack
 
 
-1. 회원 가입 => /api/members/join : member 전체를 넘긴다
+1. 회원 가입 =>@Post /api/members : member 전체를 넘긴다
  -> 회원가입이 성공하면 member id를 보낸다
 
-2. 중복 체크 => /api/members/check/{userId} : member userId만 요청한다.
+2. 중복 체크 =>@Get /api/members/{userId} : member userId만 요청한다.
  -> 중복이 아니면 true 중복이면 false
 
-3. 로그인 => /api/members/login 
+3. 로그인 =>@Post /api/members/login 
  -> 로그인에 성공하면 id를 넘기고 아니면 id = 0 으로 넘긴다
 
-4. 회원 정보 수정 => 비밀번호, 닉네임, 주소  =>/api/members/change/{id}
+4. 회원 정보 수정 => 비밀번호, 닉네임, 주소  =>@Put /api/members/{id}
 
-5. 마이페이지 => /api/members/myPage/{id}
+5. 마이페이지 =>@Get /api/members/{id}
  -> id를 통해서 모든 정보를 확인 할 수 있다.
 
  
