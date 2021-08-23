@@ -1,6 +1,6 @@
 # Shopping_Mall
 Make a Shop about ....
-## dev -> Backend(dev) : 이태양 Frontend(dev) : 김현수, 이현구
+## dev -> Backend(dev) : 이태양 Frontend(dev) : 김현수
 
 
 ----------------
