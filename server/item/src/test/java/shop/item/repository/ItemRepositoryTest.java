@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.item.domain.item.Book;
 import shop.item.domain.item.Item;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -22,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemRepositoryTest {
 
     @Autowired ItemRepository itemRepository;
-
+    @Autowired
+    EntityManager em;
 
     @Test
     void 상품등록_검색() throws Exception {
@@ -30,9 +32,17 @@ class ItemRepositoryTest {
         Book book = setItem("책1",20000,200,"태양","asas123");
 //        when
         itemRepository.save(book);
+
+        em.flush();
+        em.clear();
+
         Item find = itemRepository.findOne(book.getId());
+        find.setStock(30);
+        itemRepository.save(find);
 //        then
         assertThat(find.getId()).isEqualTo(book.getId());
+        assertThat(book.getStock()).isNotEqualTo(find.getStock());
+        assertThat(itemRepository.findAll().size()).isEqualTo(1);
     }
 
     @Test
