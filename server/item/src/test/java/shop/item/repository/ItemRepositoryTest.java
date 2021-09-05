@@ -9,6 +9,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import shop.item.domain.item.Book;
 import shop.item.domain.item.Item;
+import shop.item.exception.NotEnoughStockException;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -70,6 +71,7 @@ class ItemRepositoryTest {
 //        then
         assertThat(all.size()).isEqualTo(2);
     }
+
 
     public Book setItem(String name, int price, int stock, String author, String isbn){
         Book book = new Book();

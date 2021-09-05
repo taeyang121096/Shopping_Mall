@@ -1,15 +1,19 @@
 package shop.item.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id @GeneratedValue
@@ -24,9 +28,10 @@ public class Member {
 
     @Embedded
     private Address address;
+
     @JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
     //== 멤버 생성 메서드==//
     public static Member createMember(String userId,String userPw,String nickName, String userName,String number,Address address){

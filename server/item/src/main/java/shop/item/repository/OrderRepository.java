@@ -3,10 +3,13 @@ package shop.item.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import shop.item.domain.Member;
 import shop.item.domain.Order;
 import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -23,39 +26,30 @@ public class OrderRepository {
     }
 
 //    회원 아이디로 주문 검색
-    public List<Order> findAllByString(OrderSearch orderSearch) {
-        String query = "select o from Order o join o.member m";
-        boolean isFisrtConditon = true;
-//        주문 상태 검색
-        if (orderSearch.getOrderStatus() != null) {
-            if (isFisrtConditon) {
-                query += " where";
-                isFisrtConditon = false;
-            } else {
-                query += " and";
-            }
-            query += " o.status = :status";
-        }
-//      회원 아이디 검색
-        if (StringUtils.hasText(orderSearch.getUserId())) {
-            if (isFisrtConditon) {
-                query += " where";
-                isFisrtConditon = false;
-            } else {
-                query += " and";
-            }
-            query += " m.userId like :userId";
-        }
-
-        TypedQuery<Order> q = em.createQuery(query, Order.class).setMaxResults(100);
-        if (orderSearch.getOrderStatus() != null) {
-            q = q.setParameter("status", orderSearch.getOrderStatus());
-        }
-        if (StringUtils.hasText(orderSearch.getUserId())) {
-            q = q.setParameter("userId", orderSearch.getUserId());
-        }
-        return q.getResultList();
+public List<Order> findAllByCriteria(OrderSearch orderSearch) {
+    CriteriaBuilder cb = em.getCriteriaBuilder();
+    CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+    Root<Order> o = cq.from(Order.class);
+    Join<Order, Member> m = o.join("member", JoinType.INNER); //회원과 조인
+    List<Predicate> criteria = new ArrayList<>();
+//주문 상태 검색
+    if (orderSearch.getOrderStatus() != null) {
+        Predicate status = cb.equal(o.get("status"),
+                orderSearch.getOrderStatus());
+        criteria.add(status);
     }
+//회원 아이디 검색
+    if (StringUtils.hasText(orderSearch.getUserId())) {
+        Predicate userId =
+                cb.like(m.<String>get("userId"), "%" +
+                        orderSearch.getUserId() + "%");
+        criteria.add(userId);
+
+    }
+    cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
+    TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
+    return query.getResultList();
+}
 }
 
 

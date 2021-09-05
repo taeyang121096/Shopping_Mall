@@ -2,7 +2,9 @@ package shop.item.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.item.domain.item.Item;
 
@@ -10,10 +12,11 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id @GeneratedValue
-    @Column(name = "orderitem_id")
+    @Column(name = "order_item_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,6 +29,7 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
 
     //==생성 메서드==//
     public static OrderItem createOrderItem(Item item, int orderPrice, int count){
