@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    
+    와웅ㅜㅜㅜ우ㅇ
+    api api api api api
   </div>
 </template>
 
