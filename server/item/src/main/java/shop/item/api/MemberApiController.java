@@ -49,7 +49,7 @@ public class MemberApiController {
         Member member = memberService.findOne(id);
         Address address = member.getAddress();
         return new MemberInfo(member.getUserId(), member.getUserPw(),member.getNickName(),
-                member.getUserName(), member.getNumber(), address.getCity(), address.getStreet(), address.getZipcode());
+                member.getUserName(), member.getNumber(),address);
     }
 //  마이페이지 수정
     @PutMapping("/api/members/{id}")
@@ -60,6 +60,7 @@ public class MemberApiController {
 
     @Data
     static class CreateMemberResponse {
+//        db id 임!!!
         private Long id;
 
         public CreateMemberResponse(Long id) {
@@ -94,9 +95,7 @@ public class MemberApiController {
         private String nickName;
         private String userName;
         private String number;
-        private String city;
-        private String street;
-        private String zipcode;
+        private Address address;
     }
     @Data
     static class UpdateMember {

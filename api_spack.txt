@@ -1,19 +1,33 @@
 api spack
 
+- member
 
-1. 회원 가입 =>@Post /api/members : member 전체를 넘긴다
+1. 회원 가입 => @Post /api/members : member 전체를 넘긴다
  -> 회원가입이 성공하면 member id를 보낸다
 
-2. 중복 체크 =>@Get /api/members/{userId} : member userId만 요청한다.
+2. 중복 체크 =>@ Get /api/members/{userId} : member userId만 요청한다.
  -> 중복이 아니면 true 중복이면 false
 
-3. 로그인 =>@Post /api/members/login 
+3. 로그인 => @Post /api/members/login 
  -> 로그인에 성공하면 id를 넘기고 아니면 id = 0 으로 넘긴다
 
 4. 회원 정보 수정 => 비밀번호, 닉네임, 주소  =>@Put /api/members/{id}
 
-5. 마이페이지 =>@Get /api/members/{id}
+5. 마이페이지 => @Get /api/members/{id}
  -> id를 통해서 모든 정보를 확인 할 수 있다.
 
  
+- order
 
+1. 주문 => @Post /api/orders : 회원아이디, 상품명, 주소, 수량, 가격, 주문일 
+ -> 주문 번호를 return 해준다.
+
+2. 주문 취소 => @... : 회원아이디
+ -> 데이터 X
+
+3. 주문 내역 조회 => @Get /api/orders/{id} : 회원아이디
+ -> return 주문 내역(주문 아이디,주문일, 주문 상태, 전체 수량, 전체 가격,주소, 상품명 : 상품명, 상품가격, 상품 수) 	
+
+3. 전체 주문 내역 조회 => @Get /api/orders/{id} : admin id = 0
+ -> return 주문 내역(주문 아이디,주문일, 주문 상태, 전체 수량, 전체 가격,주소, 상품명 : 상품명, 상품가격, 상품 수) 	
+				 
