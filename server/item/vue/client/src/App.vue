@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    wowowowo
-    dfdfdfdfdfdfd
-    <router-view/>
+    <router-view></router-view>    
   </div>
 </template>
 
 <script>
+//import MoveMember from './components/MoveMember.vue'
 export default {
-  name: 'App'
+  //components: { MoveMember },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 </style>
