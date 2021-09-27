@@ -16,9 +16,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberApiController {
     private final MemberService memberService;
+
 //  회원가입
     @PostMapping("/api/members")
     public CreateMemberResponse saveMember(@RequestBody @Valid CreateMemberRequest request){
+//        [서울, 인천, 광주, 울산, 부산] [xxxx-x or xx] [xxxxx]
         Address address = new Address(request.getCity(), request.getStreet(), request.getZipcode());
         Member member = Member.createMember(request.getUserId(),request.getUserPw(), request.getNickName(), request.getUserName(), request.getNumber(),address );
         Long id = memberService.join(member);
