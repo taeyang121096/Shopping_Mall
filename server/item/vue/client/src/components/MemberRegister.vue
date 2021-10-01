@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Modal from './Modal.vue'
 export default {
     data: function() {
@@ -54,7 +55,7 @@ export default {
     },
     methods: {
         nameCheck: function(){
-            this.$axios.get('/api/members/'+this.userId+'/duplicate', {
+            axios.get('/api/members/'+this.userId+'/duplicate', {
             }).then((resp)=>{
                 this.exist=resp;
             })
@@ -68,7 +69,7 @@ export default {
         },
         regist: function(){
         if( this.userId !=='' && this.userPw !=='' && check && this.id == this.userid) { 
-            this.$axios.post('/api/members',{
+            axios.post('/api/members',{
                 userid:this.userid, 
                 userPw: this.userPw, 
                 nickname: this.nickname,

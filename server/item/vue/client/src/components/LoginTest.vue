@@ -4,7 +4,7 @@
         <input type="text" v-model="id" placeholder="아이디">
         <input type="password" v-model="pwd" placeholder="비밀번호">
         <button v-on:click="login">로그인</button>
-        <div v-for="item in ask">{{item.title}}</div>   
+        <router-link to='/memberRegister'>회원가입</router-link>
     </div>
 </template>
 
@@ -16,25 +16,21 @@ export default {
         return{
             id: '',
             pwd: '',
-            ask:[]
         }
     },
     methods: {
         login: function(){
         if( this.id !=='' && this.pwd !=='') {
-            //var result;
+            let result;
             axios.post('/api/members/login',{userId:this.id, userPw:this.pwd})
             .then(res => {
-              console.log(res.data)
+              result = res.data.id;
+              if(result!=0){
+                this.$router.push({name: 'myPage',params:{id:result}});
+              }else if(result==0){
+                alert("로그인 실패");
+              }
             })
-            /*
-            var loginresult=reslut;
-            if(loginresult){
-              alert("로그인 성공");
-            }else{
-              alert("로그인 실패");
-            }
-            */
             this.clearInput();
         }else{
             alert("로그인 실패");

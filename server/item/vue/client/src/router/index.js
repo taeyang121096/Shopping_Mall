@@ -27,8 +27,9 @@ export const router = new VueRouter({
             component: Login,
         },
         {
-            path:'/myPage',
+            path:'/myPage/:id',
             component: myPage,
+            name:'myPage',
         },
     ]
 });

@@ -31,6 +31,10 @@
           <th>도시</th>
           <th><input type="text" v-model="street"></th>
       </tr>
+      <tr>
+          <th>집코드</th>
+          <th><input type="text" v-model="zipcode"></th>
+      </tr>
       
     </table>
     <button v-on:click="modifyMypage">수정</button>
@@ -38,22 +42,26 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    name:'myPage',
+  
     data: function(){
         return{
-            userId,
-            userPw,
-            nickName,
-            userName,
-            number,
-            city,
-            street,
-            zipcode,
+            userId: '',
+            userPw: '',
+            nickName:'',
+            userName:'',
+            number:'',
+            city:'',
+            street:'',
+            zipcode:'',
         }
     },
     methods:{
     modifyMypage: function(){
-        this.$axios.put('/api/members/'+id ,{
+        axios.put('/api/members/'+this.$route.params.id,{
             userId:this.userId,
             userPw:this.userPw,
             nickName:this.nickName,
@@ -61,20 +69,23 @@ export default {
             number:this.number,
             city:this.city,
             street:this.street,
-            zipcode:this.zipcode,
-        }).then(result);
+            zipcode:this.zipcode
+        }).then(res=>{
+            console.log(res.data);
+        });
     }
     },    
     created: function(){
-        this.$axios.get('/api/members/'+id).then(result=>{
-            this.userId=result.userId;
-            this.userPw=result.userPw;
-            this.nickName=result.nickName;
-            this.userName=result.userNmae;
-            this.number=result.number;
-            this.city=result.city;
-            this.street=result.street;
-            this.zipcode=result.zipcode;          
+        axios.get('/api/members/'+this.$route.params.id).then(res=>{
+            console.log(res.data);
+            this.userId=res.data.userId;
+            this.userPw=res.data.userPw;
+            this.nickName=res.data.nickName;
+            this.userName=res.data.userName;
+            this.number=res.data.number;
+            this.city=res.data.address.city;
+            this.street=res.data.address.street;
+            this.zipcode=res.data.address.zipcode;          
         });
     }
 }
