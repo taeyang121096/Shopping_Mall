@@ -10,6 +10,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
     data: function() {
         return{
@@ -21,13 +22,19 @@ export default {
     methods: {
         login: function(){
         if( this.id !=='' && this.pwd !=='') {
-            axios.post('/api/member/login',{userId:this.id, userPw:this.pwd}).then(result)
+            //var result;
+            axios.post('/api/members/login',{userId:this.id, userPw:this.pwd})
+            .then(res => {
+              console.log(res.data)
+            })
+            /*
             var loginresult=reslut;
             if(loginresult){
               alert("로그인 성공");
             }else{
               alert("로그인 실패");
             }
+            */
             this.clearInput();
         }else{
             alert("로그인 실패");

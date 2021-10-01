@@ -3,6 +3,7 @@ package shop.item.api;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import shop.item.domain.Address;
 import shop.item.domain.Member;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
@@ -40,6 +42,8 @@ public class MemberApiController {
     @PostMapping("/api/members/login")
     public CreateMemberResponse login(@RequestBody @Valid LoginRequest request){
         List<Member> user = memberService.findByUserId(request.userId);
+        if(user.size()==0)
+            return new CreateMemberResponse(0L);
         if(user.get(0).getUserPw().equals(request.getUserPw()))
             return new CreateMemberResponse(user.get(0).getId());
         return new CreateMemberResponse(0L);
