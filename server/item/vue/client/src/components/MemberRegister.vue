@@ -20,9 +20,11 @@
                 </Modal>
             </div>       
         <input type="password" v-model="userPw" placeholder="비밀번호">
-        <input type="nickname" v-model="nickname" placeholder="닉네임">
+        <input type="nickname" v-model="nickName" placeholder="닉네임">
         <input type="name" v-model="userName" placeholder="이름">
-        <input type="address" v-model="address" placeholder="주소">
+        <input type="city" v-model="city" placeholder="시">
+        <input type="street" v-model="street" placeholder="도로명">
+        <input type="zipcode" v-model="zipcode" placeholder="우편번호">
         <input type="number" v-model="number" placeholder="전화번호">
         <button class="registerBtn" v-on:click="regist">회원가입</button>
     </div>
@@ -35,68 +37,80 @@ export default {
     data: function() {
         return{   
             // 회원등록       
-            Id,
-            userId,
-            userPw,
-            nickName,
-            userName,
-            //address,
-            city,
-            street,
-            zipcode,
-            number,
-            zipcode,
-            Idlist:[],
+            Id:'',
+            userId:'',
+            userPw:'',
+            nickName:'',
+            userName:'',
+            address:'',
+            city:'',
+            street:'',
+            zipcode:'',
+            number:'',
+            zipcode:'',
             exist: false,
             showModal: false,
             check: false,
-            success: false,
+            success: '',
         }
     },
     methods: {
         nameCheck: function(){
-            axios.get('/api/members/'+this.userId+'/duplicate', {
-            }).then((resp)=>{
-                this.exist=resp;
-            })
-            if(this.exist){
-                this.id=this.userId;
-                this.check=true;
+            if(this.userId!==''){
+                axios.get('/api/members/'+this.userId+'/duplicate', {
+                }).then((res)=>{
+                    console.log(res.data);
+                    this.exist=res.data;
+                    if(this.exist){
+                        this.id=this.userId;
+                        this.check=true;
+                        this.showModal =!this.showModal;
+                        console.log("사용가능");
+                    }else{
+                        this.userId ='';
+                        this.check=false;
+                        this.showModal =!this.showModal;
+                        console.log("이미 존재하는 아이디입니다.");
+                    }
+                })
             }else{
-                this.userId ='';
-                this.showModal =!this.showModal;
+                alert("아이디를 입력하세요.");
             }
         },
         regist: function(){
-        if( this.userId !=='' && this.userPw !=='' && check && this.id == this.userid) { 
+        if(!this.check || this.id!==this.userId){
+            alert("아이디 중복체크를 해주세요.");
+        } else if( this.userId !=='' && this.userPw !=='') { 
             axios.post('/api/members',{
-                userid:this.userid, 
+                userId:this.userId, 
                 userPw: this.userPw, 
-                nickname: this.nickname,
+                nickName: this.nickName,
                 userName: this.userName,
                 //address: this.address,
                 number: this.number,
                 city : this.city,
                 street: this.street,
                 zipcode : this.zipcode,
-            }).then((resp)=>{
-                this.success=resp;
+            }).then((res)=>{
+                console.log(res.data);
+                this.success=res.data.id;
+                if(this.success!=0){
+                    alert('회원가입 성공');
+                    this.$router.push({name: 'myPage',params:{id:this.success}})
+                }else{
+                    alert('회원가입 실패');
+                }
             })
-            if(resp){
-                alert('회원가입 성공');
-            }else{
-                alert('회원가입 실패');
-            }
             this.clearInput();
         }else{
-            alert("아이디 중복체크를 해주세요");
-        }
+            alert("빈칸을 입력해주세요.");
+            }
         },
         clearInput: function(){
             this.id='';
-            this.userid='';
+            this.userId='';
             this.userPw='';
-            this.nickname='';
+            this.nickName='';
             this.userName='';
             //this.address='';
             this.number='';
@@ -110,13 +124,6 @@ export default {
         }
     },
     created: function(){
-        if(localStorage.length >0){     
-            for(var i=0; i< localStorage.length; i++){
-                if(localStorage.key(i)!== 'loglevel:webpack-dev-server'){
-                    this.Idlist.push(localStorage.key(i));
-                }
-            }
-        }
     },
     components:{
         Modal: Modal
@@ -170,6 +177,9 @@ export default {
 .register input[type="nickname"],
 .register input[type="name"],
 .register input[type="address"],
+.register input[type="city"],
+.register input[type="street"],
+.register input[type="zipcode"],
 .register input[type="number"] {
   border: solid 2px #ffc400;
 }
