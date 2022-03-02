@@ -1,60 +1,111 @@
-# Shopping_Mall
-Make a Shop about ....
-## dev -> Backend(dev) : 이태양 Frontend(dev) : 김현수
+# Shopping_Mall Up
+## Dev a ShoppingMall 
+## Collaborator Backend(dev) : 이태양 Frontend(dev) : 김현수, 한민아
+ 
+-----------------
 
+## 개발 방향성 : With Study About Web WorkFlow      
 
-----------------
+##  개발 환경 
+
+### 백엔드
+- IntelliJ
+- Postman
+- MySQL
+- GitHub
+- Sourcetree
+
+### 프론트엔드
+- VScode
+- Eclipse
+- GitHub
+- Sourcetree
+
+## 사용 기술 
+
+### 백엔드
+
+#### Spring boot
+- JAVA 8
+- Spring MVC
+- Spring Boot
+- Spring Data JPA
+
+#### Build Tool
+- Gradle
+
+#### Database
+- H2
+- MySQL
+
+### 프론트엔드
+- Vue.js
+- Html
+- CSS
+- jQuery
+
+-----------------
 
 ### 기능 목록
 
-1. 회원 기능 :
-    - 회원가입 -> O
+1. 회원 기능 (user & admin) :
+ 
+    - 회원가입 
     - 로그인
-    - 회원 정보 조회(MyPage) -> O
-    로그인 생성 및 인증 관련 개발 필요
+    - 회원 정보 조회(MyPage)
+        - 주문 목록
+        - 리뷰 관리
+        - 회원 정보 관리
+        - 멤버십
+        - 쿠폰
+        - 장바구니
+    - 회원 관리
+    - 회원 탈퇴
 
-2. 상품 기능 : 
-(1) 초기화 (미리 저장)
-(2) admin (직접 저장)
+2. 상품 기능 (admin) : 
+
     - 상품 등록
-    - 상품 수정 
+    - 상품 수정
+    - 상품 삭제 
     - 상품 조회
-
-
-3. 주문 기능 :
+    
+3. 주문 기능 (user) :
+    
     - 상품 주문
     - 주문 내역 조회
     - 주문 취소
 
-
-
-4. 리뷰 기능 :
+4. 리뷰 기능 (user & admin) :
     - 리뷰 등록
         - 별점 등록
     - 리뷰 조회
-        - 별점 조회
+    - 리뷰 관리
+
+5. 고객 센터 기능 (user) :
+    - 채팅 기능
+
+
+### 도메인 모델 설계
+
+![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
+
 
 -----------------
+
 ### Commit Rules
 1. dev : 새로운 개발인 경우 (path도 꼭 쓸것!!)
 2. upd : 수정한 경우 (path도 꼭 쓸것!!), add(추가), del(삭제), upd(수정)
 3. del : 삭제한 경우 (path도 꼭 쓸것!!)
-4. "Rule : 파일명 -> 설명(간략하게) 알아서 잘 쓰세용"
 
-### ex)
+### ex) Rule : 파일명 -> 설명(간략하게)
 ### git commit -m "dev : login.java -> login "
 ### git commit -m "upd : readme.md -> Commit_Rules and URI_Rules (add) 리뷰기능 (del)  테이블 Address (upd)"
 ### git commit -m "del : readme.md "
-
 
 -----------------
 ### URI Rules 
 1. resource 위주로 짜기 
 -----------------
-
-### 도메인 모델 설계
-
-![image](https://user-images.githubusercontent.com/74217059/129038788-73acaad4-bc0d-4b2d-938f-42934b19ed85.png)
 
 -----------------
 ### 테이블
@@ -117,11 +168,11 @@ Make a Shop about ....
    
 -----------------
 ### 테이블 다이어그램   
-
+-----------------
 
 ![KakaoTalk_Photo_2021-08-21-01-19-06](https://user-images.githubusercontent.com/56467808/130263530-baee26ea-c13b-4504-9a69-f050cdc7cf1e.png)
 
 
- 
+
     
    
